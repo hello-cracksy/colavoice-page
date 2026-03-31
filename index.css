@@ -12,17 +12,30 @@
   font-style: normal;
 }
 
+
+
 * {
   margin: 0;
   cursor: auto;
 }
 
+/* オーバースクロール時に裏側（html）の白が見えないようにする。
+   本文は白のままにしたいため `html` を黒、`body` を白に分けて指定します。 */
+html {
+  background-color: #000; /* 裏側（オーバースクロールで見える層）を黒に */
+  min-height: 100vh;
+}
+
 body {
-  font-family: "HackGen", monospace;
+  background-color: #fff; /* ページ本文は白を維持 */
+  overscroll-behavior-x: none;
+  font-family:
+    "HackGen",
+    sans-serif;
 }
 
 header {
-  position: fixed; /* ここに注目! */
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -34,6 +47,9 @@ header {
 }
 
 footer {
+  bottom: 0;
+  left:0;
+  right:0;
   width: 100%;
   padding: 6px 0;
   text-align: center;
@@ -53,12 +69,18 @@ main {
   line-height: 1.9;
   font-size: 15px;
 }
+
 .nav {
   display: flex;
   align-items: center;       /* 縦中央 */
   justify-content: space-between; /* ← ここが重要 */  /* 横中央 */
   height: 100%;              /* liの高さを継承 */
   padding: 0 16px;  
+}
+
+.title-wrap{
+  display:flex;
+  align-items:center;
 }
 
 .site-title {
@@ -74,16 +96,28 @@ main {
   font-weight: bold;
 }
 
-
-.site-title .main a{
+a {
   cursor:pointer;
-  color: inherit;          /* 親（白）をそのまま使う */
   text-decoration: none;   /* 下線を消す */
 }
 
+/* 例外 */
+.site-title .label a{
+  cursor:auto;
+}
+
+.site-title .main a ,
 .site-title .main a:visited {
   color: inherit;          /* 訪問済みでも色を変えない */
 }
+
+a.link,
+a.link:visited {
+  font-size: 0.8rem;
+  text-decoration: underline;
+  color: #019e91fa;
+}
+
 
 .site-title .sub {
   font-size: 0.6rem;
@@ -92,6 +126,19 @@ main {
   text-align: center;
 }
 
+/* サイトタイトル横の隠しボタン */
+.label{
+  display:flex;
+  margin-left: 12px;
+  align-items:center;
+}
+
+.label a img{
+  display:block;
+  height:40px;
+  width:auto;
+  object-fit:contain;
+}
 
 .menu {
   display: flex;     /* 横並び */
@@ -159,6 +206,7 @@ main {
 }
 
 
+
 .page-title {
   margin-bottom: 2em;
 }
@@ -175,12 +223,43 @@ main {
   letter-spacing: 0.2em;
 }
 
+.news {
+  margin-top: 60px;
+  padding-top: 20px;
+  border-top: 1px solid #444;
+}
+
+.news h2 {
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+}
+
+.news-list {
+  list-style: none;
+  padding: 0;
+}
+
+.news-list li {
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+}
+
+.news-list time {
+  color: #888;
+  margin-right: 10px;
+}
+
+
 .char-buttons {
   display: flex;
   gap: 1em;
   margin-top: 1.5em;
   margin-bottom: 1.5em;
-  flex-wrap: wrap;    /* スマホで折り返す */
+  flex-wrap: nowrap;        /* 折り返さない */
+  overflow-x: auto;        /* 横スクロール */
+  white-space: nowrap;
+
+  -webkit-overflow-scrolling: touch; /* iOS 慣性 */
 }
 
 
@@ -236,17 +315,26 @@ main {
 }
 .char-detail a {
   display: inline-block;
-  margin-top: 1.5em;
-  padding: 10px 18px;
+  margin-top: 1.8em;
+  padding: 12px 22px;
   font-size: 12px;
+  letter-spacing: 0.15em;
   text-decoration: none;
-  color: #000;
   border: 2px solid #000;
+  transition: all 0.2s ease;
 }
 
 .char-detail a:hover {
   background: #000;
   color: #fff;
+  transform: translateY(-5px);
+}
+
+.char-name {
+  font-family: monospace;
+  font-size: 2.0em;
+  font-weight: bold;
+  margin-bottom: 0.6em;
 }
 
 /* テキスト */
@@ -255,11 +343,34 @@ main {
   min-width: 0;
 }
 
-/* プロフィール枠 */
-.char-text > p:first-child {
+
+.profile {
+  display: grid;
+  grid-template-columns: max-content 1em 1fr;
+  row-gap: 6px;
+  column-gap: 0.5em;
   background: #f5f5f5;
-  padding: 12px 14px;
-  margin-bottom: 1.4em;
+  padding: 14px 18px;
+  margin-bottom: 1.8em;
+  border-left: 4px solid #000;
+  font-family: sans-serif;
+  font-size: 0.95em;
+  line-height: 1.8;
+}
+
+.label {
+  text-align: left;
+}
+
+.colon {
+  text-align: center;
+}
+#pico .profile {
+  border-left-color: #009A5D;
+}
+
+#atto .profile {
+  border-left-color: #93b000;
 }
 
 .reading {
@@ -275,15 +386,42 @@ main {
   color: #009A5D;
 }
 
-.char-btn[data-target="ato"].active {
+.char-btn[data-target="atto"].active {
   color: #93b000;
 }
+
+.note {
+  font-size: 0.9em;
+  color: #666;
+}
+
+h4.allow {
+  font-size: 1.0em;
+  color: #002ea1;
+}
+
+h4.disallow {
+  font-size: 1.0em;
+  color: #960000;
+}
+
 
 .image-center {
   text-align: center;
   margin-top: 10em;
   margin-bottom: 2em;
 }
+
+.reference-sites {
+  list-style: disc;
+  padding-left: 1.5em;
+}
+
+.reference-sites a{
+  cursor:pointer;
+}
+
+
 @media (max-width: 800px) {
   header {
     height: 60px;
@@ -360,41 +498,14 @@ main {
 }
 
 h3 {
-  display: inline-block;
   margin-top: 2em;
   margin-bottom: 0.8em;
-  border-bottom:1px solid #000;
-  font-size: 1.2rem;
-  letter-spacing: 0.1em;
 }
 
-/* .example3{
-    background: linear-gradient(
-        to right,
-        #e60000,
-        #f39800,
-        #fff100,
-        #009944,
-        #0068b7,
-        #1d2088,
-        #920783,
-        #e60000
-    );
-    background-size: 200% 100%;
-    background-position: 0% 50%;
-
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-
-    font-size: 100%;
-    font-weight: bold;
-    display: inline-block;
-
-    animation: example3 3s linear infinite;
+h3 span {
+  border-bottom: 1px solid #000;
 }
 
-@keyframes example3{
-    100% {
-        background-position: 200% 50%;
-    }
-} */
+h4 {
+  margin: 30px 0 5px 0;
+}

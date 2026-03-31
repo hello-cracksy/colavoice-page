@@ -2,23 +2,69 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>COLAVOICE</title>
+  <title>TOP｜COLAVOICE</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="COLAVOICEへようこそ！ここはCracksyの個人制作音源配布所です。主にPythonで制作した合成音声を配布しています。">
   <link rel="stylesheet" href="index.css">
   <link rel="icon" href="images/favicon.ico">
 </head>
 
 <body>
 
-<div id="header"></div>
+  <div id="header"></div>
 
-<main>
+  <main class="content">
 
-</main>
+    <!-- ロゴ -->
+    <svg width="100%" viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
+      <style>
+        text {
+          font-size: 80px;
+          font-family: sans-serif;
+          font-weight: bold;
+        }
+      </style>
 
-<div id="footer"></div>
+      <!-- 左 -->
+      <text x="15.5" y="75" fill="#4b8bbe">⟲</text>
 
-<script src="common.js"></script>
+      <!-- 右 -->
+      <text x="84" y="75" fill="#ffe873">⟳</text>
+    </svg>
+
+    <!-- 説明 -->
+    <p>
+      ここは Cracksy の個人制作音源の配布所です。<br>
+      主に Python で制作した合成音声を公開しています。
+    </p>
+
+    <p>
+      音源の詳細や使用方法については、各キャラクターページをご覧ください。
+    </p>
+
+    <p>
+      また、ライセンス情報やリンク集も用意していますので、ぜひご活用ください。
+    </p>
+
+    <p>
+      新しい音源や更新情報は、随時このサイトでお知らせします。<br>
+      どうぞお楽しみに！
+    </p>
+
+    <!-- 更新履歴 -->
+    <section class="news">
+      <h2>更新履歴</h2>
+      <ul class="news-list">
+        <li>
+          <time datetime="2026-03-25">2026.03.25</time>
+          音源「奇測ピコ」公開
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <div id="footer"></div>
+
+  <script src="commons/common.js"></script>
 </body>
-
 </html>
