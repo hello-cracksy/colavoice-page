@@ -373,6 +373,12 @@ a.link:visited {
   border-left-color: #93b000;
 }
 
+.char-img {
+  max-height: 100%;
+  width: auto;
+  display: block;
+}
+
 .reading {
   font-size: 0.8em;
   color: #666;
