@@ -487,6 +487,7 @@ h4.disallow {
     min-width: 0;
     height: auto;
     overflow: hidden;
+    justify-content: center;
   }
 
   .char-img {
