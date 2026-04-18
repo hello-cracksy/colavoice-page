@@ -214,13 +214,10 @@ a.link:visited {
 }
 
 
-.colavoice_icon {
-  text-align: center;
-}
-
 .colavoice_icon img {
   display: block;
-  margin:auto;
+  padding: 20px;
+  margin: auto;
   width: 80%;
   height: auto;
 }
