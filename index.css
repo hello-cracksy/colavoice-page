@@ -125,7 +125,7 @@ a.link:visited {
 
 .label img{
   display:block;
-  height:20px;
+  height:40px;
   width:auto;
   object-fit:contain;
 }
