@@ -220,7 +220,8 @@ a.link:visited {
 
 .colavoice_icon img {
   display: block;
-  width: 100%;
+  margin:auto;
+  width: 80%;
   height: auto;
 }
 
