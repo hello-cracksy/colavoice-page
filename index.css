@@ -213,6 +213,17 @@ a.link:visited {
   letter-spacing: 0.2em;
 }
 
+
+.colavoice_icon {
+  text-align: center;
+}
+
+.colavoice_icon img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .news {
   margin-top: 60px;
   padding-top: 20px;
