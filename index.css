@@ -127,6 +127,7 @@ a.link:visited {
   display:block;
   height:40px;
   width:auto;
+  margin:10px;
   object-fit:contain;
 }
 
